@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
 
     llm_output_1 = """
-    I'm checking the length of the input: 
+    I am checking the length of the input: 
     ```python
     data_length = len(INPUT_DATA)
     print(f"Length of INPUT_DATA: {data_length}")
@@ -88,4 +88,3 @@ if __name__ == "__main__":
 
 
 
-    
