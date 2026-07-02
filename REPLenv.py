@@ -1,8 +1,8 @@
 import io
 import contextlib
+import inspect
 import traceback
 import re
-import textwrap
 
 class ReplManager:
     def __init__ (self):
@@ -17,13 +17,13 @@ class ReplManager:
     
 
     def extract_code (self, llm_response):
-        pattern = r"```python\n(.*?)\n```"
-        match = re.search(pattern, llm_response, re.DOTALL)
-
+        pattern = r"```(?:python|py)?\s*\r?\n(.*?)```"
+        match = re.search(pattern, llm_response, re.DOTALL | re.IGNORECASE)
 
         if match:
-            return match.group(1).strip()
-        
+            code = match.group(1)
+            return inspect.cleandoc(code)
+
         return llm_response.strip()
     
     def execute (self, code_string):
